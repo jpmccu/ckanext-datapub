@@ -1,0 +1,70 @@
+@prefix : <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix nanopub: <http://www.nanopub.org/nschema#> .
+@prefix pav: <http://swan.mindinformatics.org/ontologies/1.2/pav/> .
+@prefix sio: <http://semanticscience.org/resource/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}#> .
+ 
+{
+<${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}>
+  a nanopub:Nanopublication;
+  nanopub:hasAssertion :assertion;
+  nanopub:hasProvenance :provenance.
+
+  :provenance nanopub:hasAttribution :attribution;
+              nanopub:hasSupporting :supporting.
+
+  :assertion a nanopub:Assertion .
+  :provenance a nanopub:Provenance .
+  :attribution a nanopub:Attribution .
+  :supporting a nanopub:Supporting .
+}
+:assertion {
+<${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}>
+  dct:description "${c.pkg_dict['notes']}";
+  dct:identifier "${c.pkg_dict['name']}";
+  {% for tag_dict in c.pkg_dict['tags'] %}
+  dcat:keyword "${ tag_dict["name"] }";{% end %}
+  foaf:homepage <${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}>;
+  rdfs:label "${c.pkg_dict['title']}";
+  dct:title "${c.pkg_dict['title']}";
+  {% for rsc_dict in c.pkg_dict['resources'] %}dcat:distribution [
+    a dcat:Distribution;
+    {% if rsc_dict.get('name') %}dct:title "${rsc_dict.get('name')}";{% end %}
+    dcat:accessURL <${ rsc_dict['url'] }>;
+    {% if rsc_dict.get('format') %}dct:IMT [
+      rdf:value "${rsc_dict.get('format')}";
+      rdfs:label "${rsc_dict.get('format')};
+    ];{% end %}
+  ];{% end %}
+  a dcat:Dataset.
+}
+:attribution {
+<${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}>
+  {% if c.pkg_dict.get('url') %}prov:specializationOf <${ c.pkg_dict['url'] }>; {% end %}
+  {% if c.pkg_dict.get('author') %}dct:creator [
+    foaf:name ${ c.pkg_dict['author'] };
+    {% if c.pkg_dict.get('author_email') %}foaf:mbox <mailto:${c.pkg_dict['author_email']}>;{% end %} 
+  {% if c.pkg_dict.get('author') %}dct:creator [
+    foaf:name ${ c.pkg_dict['author'] };
+    {% if c.pkg_dict.get('author_email') %}foaf:mbox <mailto:${c.pkg_dict['author_email']}>;{% end %}
+  ];{% end %}
+  {% if c.pkg_dict.get('maintainer') %}dct:contributor [
+    foaf:name ${ c.pkg_dict['maintainer'] };
+    {% if c.pkg_dict.get('maintainer_email') %}foaf:mbox  <mailto:${c.pkg_dict['maintainer_email']}>;{% end %}
+  ];{% end %}
+  {% if c.pkg_dict.get('license_url') %}dct:rights <${c.pkg_dict['license_url']}>;{% end %}
+  .
+}
+:supporting {
+<${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}>
+  a dcat:Dataset.
+}
