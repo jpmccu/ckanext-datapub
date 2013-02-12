@@ -51,6 +51,7 @@
         <!-- One button for each fieldset -->
         <li class="active"><a data-toggle="tab" href="#cite-text">Text</a></li>
         <li><a data-toggle="tab" href="#cite-bibtex">BibTeX</a></li>
+        <li><a data-toggle="tab" href="#cite-datapub">Nanopublication</a></li>
       </ul>
       <div class="tab-content">
       <div id="cite-text" class="tab-pane fade in active">
@@ -125,6 +126,12 @@
   note = {Last Accessed: ${today()}}
 }
 </textarea>
+      </div>
+      <div id="cite-datapub" class="tab-pane">
+        <p>To get this dataset entry as a nanopublication, use <a href="http://en.wikipedia.org/wiki/Content_negotiation">content negotiation</a> to request this URL as <a href="http://www.w3.org/2010/01/Turtle/Trig">TriG</a> (application/x-trig) or use this URL:</p>
+        <blockquote><a href="${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}.trig">${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}.trig</a></blockquote>
+        <p>This dataset is also available in <a href="http://www.w3.org/2010/01/Turtle/">Turtle</a> (text/turtle) using content negotiation or using this URL:</p>
+        <blockquote><a href="${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}.ttl">${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}.ttl</a></blockquote>
       </div>
       </div>
     </div><!-- /tabbable -->
