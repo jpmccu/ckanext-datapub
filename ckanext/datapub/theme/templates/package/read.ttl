@@ -46,11 +46,11 @@
 <${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}>
   {% if c.pkg_dict.get('url') %}prov:specializationOf <${ c.pkg_dict['url'] }>; {% end %}
   {% if c.pkg_dict.get('author') %}dct:creator [
-    foaf:name ${ c.pkg_dict['author'] };
+    foaf:name """${ c.pkg_dict['author'] }""";
     {% if c.pkg_dict.get('author_email') %}foaf:mbox <mailto:${c.pkg_dict['author_email']}>;{% end %} 
   ];{% end %}
   {% if c.pkg_dict.get('maintainer') %}dct:contributor [
-    foaf:name ${ c.pkg_dict['maintainer'] };
+    foaf:name """${ c.pkg_dict['maintainer'] }""";
     {% if c.pkg_dict.get('maintainer_email') %}foaf:mbox  <mailto:${c.pkg_dict['maintainer_email']}>;{% end %}
   ];{% end %}
   {% if c.pkg_dict.get('license_url') %}dct:rights <${c.pkg_dict['license_url']}>;{% end %}
