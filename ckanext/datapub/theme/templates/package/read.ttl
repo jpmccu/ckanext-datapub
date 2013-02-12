@@ -31,15 +31,15 @@
   {% for tag_dict in c.pkg_dict['tags'] %}
   dcat:keyword "${ tag_dict["name"] }";{% end %}
   foaf:homepage <${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}>;
-  rdfs:label "${c.pkg_dict['title']}";
-  dct:title "${c.pkg_dict['title']}";
+  rdfs:label """${c.pkg_dict['title']}""";
+  dct:title """${c.pkg_dict['title']}""";
   {% for rsc_dict in c.pkg_dict['resources'] %}dcat:distribution [
     a dcat:Distribution;
-    {% if rsc_dict.get('name') %}dct:title "${rsc_dict.get('name')}";{% end %}
+    {% if rsc_dict.get('name') %}dct:title """${rsc_dict.get('name')}""";{% end %}
     dcat:accessURL <${ rsc_dict['url'] }>;
     {% if rsc_dict.get('format') %}dct:IMT [
-      rdf:value "${rsc_dict.get('format')}";
-      rdfs:label "${rsc_dict.get('format')};
+      rdf:value """${rsc_dict.get('format')}""";
+      rdfs:label """${rsc_dict.get('format')}""";
     ];{% end %}
   ];{% end %}
   a dcat:Dataset.
