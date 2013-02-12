@@ -56,7 +56,7 @@
       <div id="cite-text" class="tab-pane fade in active">
         <div class="bibtex_template">
         <div >
-          <span class="author"></span>
+          <span class="author"></span>.
           "<span class="title"></span>"
           <span class="if journal">
           <span class="journal"></span>,
@@ -111,18 +111,18 @@
         return str(datetime.date.today()) ?>
     <pre>
 @misc{ ${c.pkg_dict['name']},
-  author = { ${c.pkg_dict['author']} },
-  title = { ${c.pkg_dict['title']} },
-  url = { ${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)} },
-  note = {Last Accessed: ${today()}},
+  author = {${c.pkg_dict['author']}},
+  title = {${c.pkg_dict['title']}},
+  url = {${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}},
+  note = {Last Accessed: ${today()}}
 }
 </pre>
     <textarea id="bibtex_input" style="display:none;">
 @misc{ ${c.pkg_dict['name']},
-  author = { ${c.pkg_dict['author']} },
-  title = { ${c.pkg_dict['title']} },
-  url = { ${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)} },
-  note = {Last Accessed: ${today()}},
+  author = {${c.pkg_dict['author']}},
+  title = {${c.pkg_dict['title']}},
+  url = {${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}},
+  note = {Last Accessed: ${today()}}
 }
 </textarea>
       </div>
