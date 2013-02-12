@@ -29,7 +29,7 @@
 }
 :assertion {
 <${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}>
-  dct:description "${c.pkg_dict['notes']}";
+  dct:description """${c.pkg_dict['notes']}""";
   dct:identifier "${c.pkg_dict['name']}";
   {% for tag_dict in c.pkg_dict['tags'] %}
   dcat:keyword "${ tag_dict["name"] }";{% end %}
