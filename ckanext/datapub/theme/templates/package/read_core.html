@@ -132,6 +132,16 @@
         <blockquote><a href="${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}.trig">${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}.trig</a></blockquote>
         <p>This dataset is also available in <a href="http://www.w3.org/2010/01/Turtle/">Turtle</a> (text/turtle) using content negotiation or using this URL:</p>
         <blockquote><a href="${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}.ttl">${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}.ttl</a></blockquote>
+        <p>Citing this dataset in <a href="www.w3.org/TR/prov-o/">PROV-O</a> 
+           is simple, and is already supported using tools like <a href="http://www.taverna.org.uk/">Taverna</a>.
+           To state that a dataset is derived from this one, add this assertion to its
+           description (shown here in Turtle):</p>
+        <pre>
+@prefix prov: &lt;http://www.w3.org/ns/prov#&gt; .
+
+&lt;my-dataset-uri&gt; prov:wasDerivedFrom &lt;${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}&gt;.
+        </pre>
+        <p>Additional provenance, like attribution, what transformations occurred, etc. can be expressed using additional assertions from PROV-O.</p>
       </div>
       </div>
     </div><!-- /tabbable -->
