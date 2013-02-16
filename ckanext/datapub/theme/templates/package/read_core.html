@@ -114,7 +114,7 @@
 @misc{ ${c.pkg_dict['name']},
   author = {${c.pkg_dict['author']}},
   title = {${c.pkg_dict['title']}},
-  url = {${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}},
+  howpublished = "\url{${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}}",
   note = {Last Accessed: ${today()}}
 }
 </pre>
